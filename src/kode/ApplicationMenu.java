@@ -7,7 +7,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.net.URISyntaxException;
 import java.util.Optional;
 
 /**
@@ -17,6 +16,8 @@ import java.util.Optional;
 public class ApplicationMenu
 {
     private Stage owner;
+
+    public enum FileMode {SAVE, OPEN}
 
     ApplicationMenu(Stage owner)
     {
@@ -48,7 +49,7 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                showSaveDialog();
+                showFileDialog(FileMode.SAVE);
             }
         });
         MenuItem save = new MenuItem("Save");
@@ -74,7 +75,7 @@ public class ApplicationMenu
                     Optional<ButtonType> userChoice = savePrompt.showAndWait();
                     if (userChoice.get() == saveAs)
                     {
-                        showSaveDialog();
+                        showFileDialog(FileMode.SAVE);
                     }
                 }
             }
@@ -85,7 +86,7 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                showOpenDialog();
+                showFileDialog(FileMode.OPEN);
             }
         });
         fileMenu.getItems().addAll(newFile, saveAs, save, open);
@@ -97,28 +98,43 @@ public class ApplicationMenu
         return menuBar;
     }
 
-    private void showSaveDialog()
+
+    /**
+     * Display a dialog for the user to save or open a file
+     * @param mode save or open
+     */
+    private void showFileDialog(FileMode mode)
     {
         //TODO: possibly add extension filters
         FileChooser chooser = new FileChooser();
-        File file = chooser.showSaveDialog(owner);
+        File file = null;
+        boolean success = false;
 
-        // write the string to a file
-        String data = Global.editor.getText();
-        boolean success = IO.writeTextFile(file, data);
+        if (mode == FileMode.SAVE)
+        {
+            file = chooser.showSaveDialog(owner);
+
+            // write the string to a file
+            String data = Global.editor.getText();
+            success = IO.writeTextFile(file, data);
+        }
+
+        else if (mode == FileMode.OPEN)
+        {
+            file = chooser.showOpenDialog(owner);
+
+            // set the currently open text to the one in the selected file
+            String newData = IO.readTextFile(file);
+            if (newData != null)
+            {
+                success = true;
+                Global.editor.setText(newData);
+            }
+        }
+
         if (success)
         {
             Global.editor.savedAsFile = file;
         }
-    }
-
-    private void showOpenDialog()
-    {
-        FileChooser chooser = new FileChooser();
-        File file = chooser.showOpenDialog(owner);
-
-        // set the currently open text to the one in the selected file
-        Global.editor.setText(IO.readTextFile(file));
-        Global.editor.savedAsFile = file;
     }
 }
