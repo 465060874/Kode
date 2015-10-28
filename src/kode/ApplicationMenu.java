@@ -2,22 +2,15 @@ package kode;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.util.Optional;
 
 /**
+ * Class to create and handle everything related to the menu (menubar)
  * Created by axelkennedal on 2015-10-28.
  */
 public class ApplicationMenu
@@ -47,10 +40,38 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                Main.editor.printText();
+                if (Global.editor.savedAsFile != null)
+                {
+                    IO.writeTextFile(Global.editor.savedAsFile, Global.editor.getText());
+                }
+                else
+                {
+                    // Inform the user that the file has not been saved before and give option to save as
+                    Alert savePrompt = new Alert(Alert.AlertType.INFORMATION);
+                    savePrompt.setTitle("Save File");
+                    savePrompt.setHeaderText("This is your first time saving this file");
+                    savePrompt.setContentText("Choose a location");
+                    ButtonType saveAs = new ButtonType("Save as...");
+                    ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                    savePrompt.getButtonTypes().setAll(saveAs, cancel);
+                    Optional<ButtonType> userChoice = savePrompt.showAndWait();
+                    if (userChoice.get() == saveAs)
+                    {
+                        showSaveDialog();
+                    }
+                }
             }
         });
-        fileMenu.getItems().addAll(saveAs, save);
+        MenuItem open = new MenuItem("Open...");
+        open.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                showOpenDialog();
+            }
+        });
+        fileMenu.getItems().addAll(saveAs, save, open);
 
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(fileMenu);
@@ -66,21 +87,21 @@ public class ApplicationMenu
         File file = chooser.showSaveDialog(owner);
 
         // write the string to a file
-        Charset charset = Charset.forName("utf-8");
-        String data = Main.editor.textArea.getText();
-        byte dataArray[] = data.getBytes();
-        Path filePath = file.toPath();
-        try
+        String data = Global.editor.getText();
+        boolean success = IO.writeTextFile(file, data);
+        if (success)
         {
-            OutputStream out = new BufferedOutputStream(
-                    Files.newOutputStream(filePath, StandardOpenOption.CREATE, StandardOpenOption.APPEND)
-            );
-            out.write(dataArray, 0, dataArray.length);
-            out.flush();
-            out.close();
-        } catch (IOException e)
-        {
-
+            Global.editor.savedAsFile = file;
         }
+    }
+
+    private void showOpenDialog()
+    {
+        FileChooser chooser = new FileChooser();
+        File file = chooser.showOpenDialog(owner);
+
+        // set the currently open text to the one in the selected file
+        Global.editor.setText(IO.readTextFile(file));
+        Global.editor.savedAsFile = file;
     }
 }

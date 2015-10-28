@@ -2,20 +2,22 @@ package kode;
 
 import javafx.scene.control.TextArea;
 
+import java.io.File;
+
 /**
  * Created by axelkennedal on 2015-10-28.
  */
 public class TextEditor extends TextArea
 {
-    public TextArea textArea;
+    public File savedAsFile;
 
     TextEditor()
     {
-        textArea = new TextArea();
+        super();
     }
 
     public void printText()
     {
-        System.out.println(textArea.getText());
+        System.out.println(getText());
     }
 }

@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application
 {
-    public static TextEditor editor;
 
     public static void main(String[] args)
     {
@@ -21,13 +20,19 @@ public class Main extends Application
 
         StackPane root = new StackPane();
 
-        editor = new TextEditor();
-        root.getChildren().add(editor);
+        Global.editor = new TextEditor();
+        root.getChildren().add(Global.editor);
 
         Scene rootScene = new Scene(root, 400, 300);
+        //rootScene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
         primaryStage.setScene(rootScene);
         primaryStage.show();
         ApplicationMenu menu = new ApplicationMenu(primaryStage);
         root.getChildren().add(menu.createApplicationMenu());
     }
+}
+
+class Global
+{
+    public static TextEditor editor;
 }
