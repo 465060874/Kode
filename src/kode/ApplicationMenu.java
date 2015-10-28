@@ -7,6 +7,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 /**
@@ -25,6 +26,22 @@ public class ApplicationMenu
     public MenuBar createApplicationMenu()
     {
         Menu fileMenu = new Menu("File");
+        MenuItem newFile = new MenuItem("New...");
+        newFile.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                // TODO: create dialog for user to pick empty, java template/javafx template
+                String template = null;
+                File templateFile = new File(Main.class.getResource("../resources/javaTemplate.txt").getPath());
+                template = IO.readTextFile(templateFile);
+                Global.editor.setText(template);
+
+                // reset the filepath so previous file is not overwritten
+                Global.editor.savedAsFile = null;
+            }
+        });
         MenuItem saveAs = new MenuItem("Save as...");
         saveAs.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -71,7 +88,7 @@ public class ApplicationMenu
                 showOpenDialog();
             }
         });
-        fileMenu.getItems().addAll(saveAs, save, open);
+        fileMenu.getItems().addAll(newFile, saveAs, save, open);
 
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(fileMenu);
