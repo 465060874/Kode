@@ -16,6 +16,12 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage)
     {
+        // get platform information
+        PlatformManager.initialize();
+        System.err.println(PlatformManager.getOS());
+
+
+        // create main window
         primaryStage.setTitle("Kode");
 
         StackPane root = new StackPane();
@@ -27,6 +33,8 @@ public class Main extends Application
         //rootScene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
         primaryStage.setScene(rootScene);
         primaryStage.show();
+
+        // create and add application menu
         ApplicationMenu menu = new ApplicationMenu(primaryStage);
         root.getChildren().add(menu.createApplicationMenu());
     }

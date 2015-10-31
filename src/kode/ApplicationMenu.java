@@ -3,6 +3,7 @@ package kode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
  */
 public class ApplicationMenu
 {
+    // the window which owns this window ("parent")
     private Stage owner;
 
     public enum FileMode {SAVE, OPEN}
@@ -24,10 +26,15 @@ public class ApplicationMenu
         this.owner = owner;
     }
 
+    /**
+     * Create the application menu, including eventhandlers and hotkeys
+     * @return the created MenuBar
+     */
     public MenuBar createApplicationMenu()
     {
         Menu fileMenu = new Menu("File");
         MenuItem newFile = new MenuItem("New...");
+        newFile.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+N"));
         newFile.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -44,6 +51,7 @@ public class ApplicationMenu
             }
         });
         MenuItem saveAs = new MenuItem("Save as...");
+        saveAs.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+SHIFT+S"));
         saveAs.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -53,6 +61,7 @@ public class ApplicationMenu
             }
         });
         MenuItem save = new MenuItem("Save");
+        save.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+S"));
         save.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -81,6 +90,7 @@ public class ApplicationMenu
             }
         });
         MenuItem open = new MenuItem("Open...");
+        open.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+O"));
         open.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -114,21 +124,27 @@ public class ApplicationMenu
         {
             file = chooser.showSaveDialog(owner);
 
-            // write the string to a file
-            String data = Global.editor.getText();
-            success = IO.writeTextFile(file, data);
+            if (file != null)
+            {
+                // write the string to a file
+                String data = Global.editor.getText();
+                success = IO.writeTextFile(file, data);
+            }
         }
 
         else if (mode == FileMode.OPEN)
         {
             file = chooser.showOpenDialog(owner);
 
-            // set the currently open text to the one in the selected file
-            String newData = IO.readTextFile(file);
-            if (newData != null)
+            if (file != null)
             {
-                success = true;
-                Global.editor.setText(newData);
+                // set the currently open text to the one in the selected file
+                String newData = IO.readTextFile(file);
+                if (newData != null)
+                {
+                    success = true;
+                    Global.editor.setText(newData);
+                }
             }
         }
 
