@@ -109,7 +109,7 @@ public class ApplicationMenu
          */
         Menu sourceMenu = new Menu("Source");
         MenuItem compile = new MenuItem("Compile");
-        compile.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+R"));
+        compile.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+SHIFT+C"));
         compile.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -122,7 +122,36 @@ public class ApplicationMenu
                 }
             }
         });
-        sourceMenu.getItems().addAll(compile);
+        MenuItem run = new MenuItem("Run");
+        run.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+SHIFT+R"));
+        run.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Global.editor.hasCompiledSuccessfully = true;
+                if (Global.editor.hasCompiledSuccessfully)
+                {
+                    ShellInterface.runCode(Global.editor.savedAsFile);
+                }
+            }
+        });
+        MenuItem compileAndRun = new MenuItem("Compile & Run");
+        compileAndRun.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+R"));
+        compileAndRun.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Global.editor.hasCompiledSuccessfully = true;
+                if (Global.editor.hasCompiledSuccessfully)
+                {
+                    ShellInterface.compileCode(Global.editor.savedAsFile);
+                    ShellInterface.runCode(Global.editor.savedAsFile);
+                }
+            }
+        });
+        sourceMenu.getItems().addAll(compile, run, compileAndRun);
 
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(fileMenu, sourceMenu);

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/kode/ShellInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kode/ApplicationMenu.java" afterPath="$PROJECT_DIR$/src/kode/ApplicationMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kode/Main.java" afterPath="$PROJECT_DIR$/src/kode/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kode/ShellInterface.java" afterPath="$PROJECT_DIR$/src/kode/ShellInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kode/TextEditor.java" afterPath="$PROJECT_DIR$/src/kode/TextEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,6 +17,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Kode$Kode.coverage" NAME="Kode Coverage Results" MODIFIED="1446311492537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>sample.*</FILTER>
+    </SUITE>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -78,25 +81,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShellInterface.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShellInterface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kode/ShellInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6730769">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#712#713#0" expanded="true" />
-                <element signature="e#783#784#0" expanded="true" />
+                <element signature="e#1789#1790#0" expanded="true" />
+                <element signature="e#1866#1867#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationMenu.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationMenu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/kode/ApplicationMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="107" column="33" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
+            <state vertical-scroll-proportion="2.948886">
+              <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#571#572#0" expanded="true" />
@@ -109,8 +112,12 @@
                 <element signature="e#3505#3506#0" expanded="true" />
                 <element signature="e#3681#3879#0" expanded="true" />
                 <element signature="e#3878#3879#0" expanded="true" />
-                <element signature="e#4232#4623#0" expanded="true" />
-                <element signature="e#4622#4623#0" expanded="true" />
+                <element signature="e#4238#4629#0" expanded="true" />
+                <element signature="e#4628#4629#0" expanded="true" />
+                <element signature="e#4803#5182#0" expanded="true" />
+                <element signature="e#5181#5182#0" expanded="true" />
+                <element signature="e#5390#5844#0" expanded="true" />
+                <element signature="e#5843#5844#0" expanded="true" />
                 <element signature="method#showFileDialog#0;class#ApplicationMenu#0" expanded="false" />
               </folding>
             </state>
@@ -146,7 +153,7 @@
         <entry file="file://$PROJECT_DIR$/src/kode/TextEditor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -193,10 +200,10 @@
         <option value="$PROJECT_DIR$/src/kode/style.css" />
         <option value="$PROJECT_DIR$/src/kode/IO.java" />
         <option value="$PROJECT_DIR$/src/kode/PlatformManager.java" />
-        <option value="$PROJECT_DIR$/src/kode/TextEditor.java" />
         <option value="$PROJECT_DIR$/src/kode/Main.java" />
-        <option value="$PROJECT_DIR$/src/kode/ApplicationMenu.java" />
+        <option value="$PROJECT_DIR$/src/kode/TextEditor.java" />
         <option value="$PROJECT_DIR$/src/kode/ShellInterface.java" />
+        <option value="$PROJECT_DIR$/src/kode/ApplicationMenu.java" />
       </list>
     </option>
   </component>
@@ -534,7 +541,8 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18016194" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19736843" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32964224" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20954004" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
@@ -542,7 +550,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3987854" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -599,7 +607,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/kode/ShellInterface.java</url>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -642,8 +657,12 @@
             <element signature="e#3505#3506#0" expanded="true" />
             <element signature="e#3681#3879#0" expanded="true" />
             <element signature="e#3878#3879#0" expanded="true" />
-            <element signature="e#4232#4623#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#4238#4629#0" expanded="true" />
+            <element signature="e#4628#4629#0" expanded="true" />
+            <element signature="e#4803#5182#0" expanded="true" />
+            <element signature="e#5181#5182#0" expanded="true" />
+            <element signature="e#5390#5844#0" expanded="true" />
+            <element signature="e#5843#5844#0" expanded="true" />
             <element signature="method#showFileDialog#0;class#ApplicationMenu#0" expanded="false" />
           </folding>
         </state>
@@ -703,8 +722,12 @@
             <element signature="e#3505#3506#0" expanded="true" />
             <element signature="e#3681#3879#0" expanded="true" />
             <element signature="e#3878#3879#0" expanded="true" />
-            <element signature="e#4232#4623#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#4238#4629#0" expanded="true" />
+            <element signature="e#4628#4629#0" expanded="true" />
+            <element signature="e#4803#5182#0" expanded="true" />
+            <element signature="e#5181#5182#0" expanded="true" />
+            <element signature="e#5390#5844#0" expanded="true" />
+            <element signature="e#5843#5844#0" expanded="true" />
             <element signature="method#showFileDialog#0;class#ApplicationMenu#0" expanded="false" />
           </folding>
         </state>
@@ -779,16 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/kode/TextEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/kode/PlatformManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -796,29 +809,6 @@
           <folding>
             <element signature="method#determineOS#0;class#PlatformManager#0" expanded="false" />
             <element signature="method#determinePrimaryHotKey#0;class#PlatformManager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/kode/ApplicationMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="107" column="33" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
-            <element signature="e#1057#1686#0" expanded="true" />
-            <element signature="e#1685#1686#0" expanded="true" />
-            <element signature="e#1876#2074#0" expanded="true" />
-            <element signature="e#2073#2074#0" expanded="true" />
-            <element signature="e#2246#3506#0" expanded="true" />
-            <element signature="e#3505#3506#0" expanded="true" />
-            <element signature="e#3681#3879#0" expanded="true" />
-            <element signature="e#3878#3879#0" expanded="true" />
-            <element signature="e#4232#4623#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
-            <element signature="method#showFileDialog#0;class#ApplicationMenu#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -833,14 +823,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/kode/ShellInterface.java">
+    <entry file="file://$PROJECT_DIR$/src/kode/TextEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6730769">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#712#713#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kode/ShellInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1789#1790#0" expanded="true" />
+            <element signature="e#1866#1867#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kode/ApplicationMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.948886">
+          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+            <element signature="e#1057#1686#0" expanded="true" />
+            <element signature="e#1685#1686#0" expanded="true" />
+            <element signature="e#1876#2074#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+            <element signature="e#2246#3506#0" expanded="true" />
+            <element signature="e#3505#3506#0" expanded="true" />
+            <element signature="e#3681#3879#0" expanded="true" />
+            <element signature="e#3878#3879#0" expanded="true" />
+            <element signature="e#4238#4629#0" expanded="true" />
+            <element signature="e#4628#4629#0" expanded="true" />
+            <element signature="e#4803#5182#0" expanded="true" />
+            <element signature="e#5181#5182#0" expanded="true" />
+            <element signature="e#5390#5844#0" expanded="true" />
+            <element signature="e#5843#5844#0" expanded="true" />
+            <element signature="method#showFileDialog#0;class#ApplicationMenu#0" expanded="false" />
           </folding>
         </state>
       </provider>

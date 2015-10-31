@@ -11,6 +11,7 @@ public class TextEditor extends TextArea
 {
     // (if saved) contains a reference to the file on disk
     public File savedAsFile;
+    boolean hasCompiledSuccessfully;
 
     TextEditor()
     {
