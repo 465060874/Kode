@@ -32,6 +32,9 @@ public class ApplicationMenu
      */
     public MenuBar createApplicationMenu()
     {
+        /*
+         * Create the File menu
+         */
         Menu fileMenu = new Menu("File");
         MenuItem newFile = new MenuItem("New...");
         newFile.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+N"));
@@ -101,8 +104,28 @@ public class ApplicationMenu
         });
         fileMenu.getItems().addAll(newFile, saveAs, save, open);
 
+        /*
+         * Create the Source menu
+         */
+        Menu sourceMenu = new Menu("Source");
+        MenuItem compile = new MenuItem("Compile");
+        compile.setAccelerator(KeyCombination.keyCombination(PlatformManager.primaryHotkey + "+R"));
+        compile.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                // TODO: make it possible to compile without having saved
+                if (Global.editor.savedAsFile != null)
+                {
+                    ShellInterface.compileCode(Global.editor.savedAsFile);
+                }
+            }
+        });
+        sourceMenu.getItems().addAll(compile);
+
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(fileMenu);
+        menuBar.getMenus().addAll(fileMenu, sourceMenu);
         menuBar.setUseSystemMenuBar(true);
 
         return menuBar;

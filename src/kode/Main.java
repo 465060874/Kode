@@ -18,8 +18,6 @@ public class Main extends Application
     {
         // get platform information
         PlatformManager.initialize();
-        System.err.println(PlatformManager.getOS());
-
 
         // create main window
         primaryStage.setTitle("Kode");
