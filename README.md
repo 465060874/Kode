@@ -1,5 +1,5 @@
 #Kode
-A small project of my own - an attempt at creating a very simple IDE implemented in JavaFX.
+A small project of my own - an attempt at creating a very simple Java IDE implemented in JavaFX.
 
 ##Features
 * Simple text editor

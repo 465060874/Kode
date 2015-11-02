@@ -10,6 +10,8 @@ import javafx.stage.WindowEvent;
 
 public class Main extends Application
 {
+    private static int minWindowWidth = 400;
+    private static int minWindowHeight = 300;
 
     public static void main(String[] args)
     {
@@ -43,8 +45,10 @@ public class Main extends Application
         Global.editor = new TextEditor();
         root.getChildren().add(Global.editor);
 
-        Scene rootScene = new Scene(root, 400, 300);
+        Scene rootScene = new Scene(root, minWindowWidth, minWindowHeight);
         //rootScene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
+        primaryStage.setMinWidth(minWindowWidth);
+        primaryStage.setMinHeight(minWindowHeight);
         primaryStage.setScene(rootScene);
         primaryStage.show();
 
