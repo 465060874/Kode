@@ -11,6 +11,9 @@ public class TextEditor extends TextArea
 {
     // (if saved) contains a reference to the file on disk
     public File savedAsFile;
+    public boolean isTempFile;
+
+    // remember this in order to know if it is possible to run the compiled artifact of the source
     boolean hasCompiledSuccessfully;
 
     TextEditor()
@@ -22,4 +25,6 @@ public class TextEditor extends TextArea
     {
         System.out.println(getText());
     }
+
+
 }

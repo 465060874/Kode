@@ -1,5 +1,8 @@
 #get rid of those pesky DS-Store-files
 *.DS_Store
 
-#don't save compiled Java
+#ignore compiled Java
 *.class
+
+#ignore artifacts
+out/*

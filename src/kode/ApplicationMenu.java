@@ -115,11 +115,7 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                // TODO: make it possible to compile without having saved
-                if (Global.editor.savedAsFile != null)
-                {
-                    ShellInterface.compileCode(Global.editor.savedAsFile);
-                }
+                cleanAndCompile();
             }
         });
         MenuItem run = new MenuItem("Run");
@@ -129,11 +125,7 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                Global.editor.hasCompiledSuccessfully = true;
-                if (Global.editor.hasCompiledSuccessfully)
-                {
-                    ShellInterface.runCode(Global.editor.savedAsFile);
-                }
+                run();
             }
         });
         MenuItem compileAndRun = new MenuItem("Compile & Run");
@@ -143,12 +135,8 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                Global.editor.hasCompiledSuccessfully = true;
-                if (Global.editor.hasCompiledSuccessfully)
-                {
-                    ShellInterface.compileCode(Global.editor.savedAsFile);
-                    ShellInterface.runCode(Global.editor.savedAsFile);
-                }
+                cleanAndCompile();
+                run();
             }
         });
         sourceMenu.getItems().addAll(compile, run, compileAndRun);
@@ -159,7 +147,6 @@ public class ApplicationMenu
 
         return menuBar;
     }
-
 
     /**
      * Display a dialog for the user to save or open a file
@@ -203,6 +190,63 @@ public class ApplicationMenu
         if (success)
         {
             Global.editor.savedAsFile = file;
+        }
+    }
+
+    /**
+     * Remove potential old artifacts and compile the currently open source code.
+     * If the user has not saved the file it will be temporarily saved and compiled.
+     * Otherwise the code will be compiled as normal.
+     */
+    private void cleanAndCompile()
+    {
+        // remove old artifacts
+        if (Global.editor.savedAsFile != null)
+        {
+            ShellInterface.cleanArtifacts(Global.editor.savedAsFile.getParentFile());
+        }
+
+        // the source code has been saved at a location known by the user
+        if (Global.editor.savedAsFile != null && !Global.editor.isTempFile)
+        {
+            ShellInterface.compileCode(Global.editor.savedAsFile);
+        }
+
+        // use temporary source code file on disk
+        else
+        {
+            // rename previous tempfile if one existed and if class name in source code changed
+            if (Global.editor.isTempFile)
+            {
+                String newFileName = SourceProcessor.className(Global.editor.getText()) + ".java";
+                File newFile = IO.renameFile(Global.editor.savedAsFile, newFileName);
+                IO.writeTextFile(newFile, Global.editor.getText());
+                Global.editor.savedAsFile = newFile;
+            }
+
+            // create a temporary source code file on disk
+            else
+            {
+                Global.editor.savedAsFile = IO.saveTemp(Global.editor.getText());
+            }
+
+            Global.editor.hasCompiledSuccessfully = ShellInterface.compileCode(Global.editor.savedAsFile);
+            Global.editor.isTempFile = true;
+        }
+    }
+
+    private void run()
+    {
+        if (Global.editor.hasCompiledSuccessfully)
+        {
+            ShellInterface.runCode(Global.editor.savedAsFile);
+        }
+        else
+        {
+            Alert compilationProblem = new Alert(Alert.AlertType.WARNING);
+            compilationProblem.setTitle("Could not run");
+            compilationProblem.setHeaderText("Source has not successfully been compiled yet");
+            compilationProblem.show();
         }
     }
 }

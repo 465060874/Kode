@@ -2,7 +2,6 @@ package kode;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -56,10 +55,11 @@ public class ShellInterface
     /**
      * Compile the specified sourceCode
      * @param sourceCode
+     * @return true if compilation succeeded, false otherwise
      */
-    public static void compileCode(File sourceCode)
+    public static boolean compileCode(File sourceCode)
     {
-        executeCommand("javac " + sourceCode.getAbsolutePath(), null);
+        return "".equals(executeCommand("javac " + sourceCode.getAbsolutePath(), null));
     }
 
     /**
@@ -68,16 +68,34 @@ public class ShellInterface
      */
     public static String runCode(File sourceCode)
     {
-        String compiledName = sourceCode.getName();
-        compiledName = compiledName.substring(0, compiledName.lastIndexOf('.'));
-
+        String compiledName = IO.fileNameWithoutExtension(sourceCode);
         return executeCommand("java " + compiledName, sourceCode.getParentFile());
     }
 
+    /**
+     * Asks the system for which version on Java the user has installed
+     * @return a String contining the Java version number
+     */
     public static String javaSDKVersion()
     {
         String javaInfo = executeCommand("java -version", null);
         String SDKVersion = javaInfo.substring(javaInfo.indexOf("\"") + 1, javaInfo.lastIndexOf("\""));
         return SDKVersion;
+    }
+
+    /**
+     * Clean up (remove) artifacts within a directory
+     * @param directory
+     */
+
+    public static void cleanArtifacts(File directory)
+    {
+        for (File file : directory.listFiles())
+        {
+            if (file.getName().endsWith(".class"))
+            {
+                file.delete();
+            }
+        }
     }
 }
