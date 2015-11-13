@@ -37,6 +37,7 @@ public class Main extends Application
             }
         });
 
+        // TODO: create split view with one panel for program execution input/output
         // create main window
         primaryStage.setTitle("Kode");
 

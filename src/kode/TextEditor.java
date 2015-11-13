@@ -26,5 +26,4 @@ public class TextEditor extends TextArea
         System.out.println(getText());
     }
 
-
 }

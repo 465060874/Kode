@@ -43,14 +43,7 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                // TODO: create dialog for user to pick empty, java template/javafx template
-                String template = null;
-                File templateFile = new File(Main.class.getResource("../resources/javaTemplate.txt").getPath());
-                template = IO.readTextFile(templateFile);
-                Global.editor.setText(template);
-
-                // reset the filepath so previous file is not overwritten
-                Global.editor.savedAsFile = null;
+                newFile();
             }
         });
         MenuItem saveAs = new MenuItem("Save as...");
@@ -70,26 +63,7 @@ public class ApplicationMenu
             @Override
             public void handle(ActionEvent event)
             {
-                if (Global.editor.savedAsFile != null)
-                {
-                    IO.writeTextFile(Global.editor.savedAsFile, Global.editor.getText());
-                }
-                else
-                {
-                    // Inform the user that the file has not been saved before and give option to save as
-                    Alert savePrompt = new Alert(Alert.AlertType.INFORMATION);
-                    savePrompt.setTitle("Save File");
-                    savePrompt.setHeaderText("This is your first time saving this file");
-                    savePrompt.setContentText("Choose a location");
-                    ButtonType saveAs = new ButtonType("Save as...");
-                    ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                    savePrompt.getButtonTypes().setAll(saveAs, cancel);
-                    Optional<ButtonType> userChoice = savePrompt.showAndWait();
-                    if (userChoice.get() == saveAs)
-                    {
-                        showFileDialog(FileMode.SAVE);
-                    }
-                }
+                saveFile();
             }
         });
         MenuItem open = new MenuItem("Open...");
@@ -200,6 +174,9 @@ public class ApplicationMenu
      */
     private void cleanAndCompile()
     {
+        //TODO: only recompile if source code is newer than compiled file, perhaps create a File object with current source code
+        // and compare using .hashCode()?
+
         // remove old artifacts
         if (Global.editor.savedAsFile != null)
         {
@@ -248,5 +225,41 @@ public class ApplicationMenu
             compilationProblem.setHeaderText("Source has not successfully been compiled yet");
             compilationProblem.show();
         }
+    }
+
+    private void saveFile()
+    {
+        if (Global.editor.savedAsFile != null)
+        {
+            IO.writeTextFile(Global.editor.savedAsFile, Global.editor.getText());
+        }
+        else
+        {
+            // Inform the user that the file has not been saved before and give option to save as
+            Alert savePrompt = new Alert(Alert.AlertType.INFORMATION);
+            savePrompt.setTitle("Save File");
+            savePrompt.setHeaderText("This is your first time saving this file");
+            savePrompt.setContentText("Choose a location");
+            ButtonType saveAs = new ButtonType("Save as...");
+            ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            savePrompt.getButtonTypes().setAll(saveAs, cancel);
+            Optional<ButtonType> userChoice = savePrompt.showAndWait();
+            if (userChoice.get() == saveAs)
+            {
+                showFileDialog(FileMode.SAVE);
+            }
+        }
+    }
+
+    private void newFile()
+    {
+        // TODO: create dialog for user to pick empty, java template/javafx template
+        String template = null;
+        File templateFile = new File(Main.class.getResource("../resources/javaTemplate.txt").getPath());
+        template = IO.readTextFile(templateFile);
+        Global.editor.setText(template);
+
+        // reset the filepath so previous file is not overwritten
+        Global.editor.savedAsFile = null;
     }
 }
